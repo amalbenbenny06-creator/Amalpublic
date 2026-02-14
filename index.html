@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultimate Valentine For Vismaya</title>
+
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: linear-gradient(135deg, #ffd6e8, #ffe9c9);
+        overflow: hidden;
+      }
+
+      .book {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+      }
+
+      .page {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: white;
+        padding: 60px 40px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        transition: transform 0.6s ease, opacity 0.6s ease;
+      }
+
+      .hidden {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+
+      h1,
+      h2 {
+        color: #e91e63;
+      }
+      p {
+        font-size: 18px;
+        line-height: 1.8;
+        max-width: 850px;
+      }
+
+      img.main-img {
+        width: 260px;
+        border-radius: 20px;
+        margin: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .nav {
+        position: fixed;
+        bottom: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 30px;
+      }
+
+      button {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 25px;
+        background: #e91e63;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .indicator {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .heart {
+        position: fixed;
+        color: #ff4d6d;
+        animation: float 6s linear infinite;
+        opacity: 0.7;
+      }
+
+      @keyframes float {
+        from {
+          transform: translateY(100vh);
+        }
+        to {
+          transform: translateY(-10vh);
+        }
+      }
+
+      .teddy {
+        position: absolute;
+        font-size: 50px;
+      }
+
+      .teddy.left {
+        top: 20px;
+        left: 20px;
+      }
+      .teddy.right {
+        bottom: 20px;
+        right: 20px;
+      }
+    </style>
+
+    <script>
+      let currentPage = 0;
+
+      function updateIndicator() {
+        document.getElementById("indicator").innerText =
+          "Page " +
+          (currentPage + 1) +
+          " of " +
+          document.getElementsByClassName("page").length;
+      }
+
+      function showPage(index) {
+        let pages = document.getElementsByClassName("page");
+        if (index < 0 || index >= pages.length) return;
+
+        for (let i = 0; i < pages.length; i++) {
+          pages[i].classList.add("hidden");
+        }
+
+        pages[index].classList.remove("hidden");
+        currentPage = index;
+        updateIndicator();
+      }
+
+      function nextPage() {
+        showPage(currentPage + 1);
+      }
+
+      function prevPage() {
+        showPage(currentPage - 1);
+      }
+
+      function createHearts(count) {
+        for (let i = 0; i < count; i++) {
+          let heart = document.createElement("div");
+          heart.className = "heart";
+          heart.innerHTML = "❤️";
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.fontSize = Math.random() * 25 + 15 + "px";
+          heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+          document.body.appendChild(heart);
+        }
+      }
+
+      function forgiveYes() {
+        createHearts(80);
+        nextPage();
+      }
+
+      function moveNo() {
+        let btn = document.getElementById("noBtn");
+        btn.style.position = "absolute";
+        btn.style.left = Math.random() * 70 + "%";
+        btn.style.top = Math.random() * 70 + "%";
+      }
+
+      window.onload = function () {
+        showPage(0);
+        createHearts(40);
+      };
+    </script>
+  </head>
+  <body>
+    <audio autoplay loop>
+      <source
+        src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8d8f1b4a5.mp3?filename=romantic-piano-110624.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <div class="indicator" id="indicator"></div>
+
+    <div class="book">
+      <div class="page">
+        <div class="teddy left">🧸🤍</div>
+        <div class="teddy right">🤎🧸</div>
+        <h1>Happy Valentine's Day, Vismaya, My Love ❤️</h1>
+        <p>
+          My Ponnee, I love you soooo muchhh ❤️❤️❤️❤️ Will you be my
+          Valentine???
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>Sorry for breaking your heart vichuu 💔</h2>
+        <p>
+          You waited at 12.I didn’t show up the way you deserved.And I’m truly
+          sorry. I couldnt matchup with your love.
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>I wont ever give up on you</h2>
+        <p>
+          I will never let you feel small again. I will always love the way you
+          wanted and wont disappoint you.
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>How Special You Are 💖</h2>
+        <p>
+          You love deeply. You care endlessly. You make me feel so special and
+          loved.
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>Our Journey 🌸</h2>
+        <p>
+          From Brilliant Study Centre… to today… we built this together through
+          lot of love,care,fights and moments we shared together.I want to
+          continue our journey till our death by sharing and caring each other,
+          loving and fighting with each other, living peacefully as a cute
+          little family
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>ROSE DAY 🌸</h2>
+        <p>
+          Vichuuu, you are the most prettiest rose in this whole universe.The
+          petals resembles our beautifuland happy moments. Its just like you, so
+          colourful, pretty, delicate, sweet and fragrant. I am the thorns, the
+          one who makes chaos, gets angry and starts a fight. But together, we
+          love fight heal and care a lot.I love you ponnee.Ummmaaaa
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>PROPOSE DAY 🌸</h2>
+        <p>
+          Mutheee, Will you be my girlfriend? Will you live the rest of your
+          life with me? in every happy and sad situations, goot and tiring
+          moments? Will you marry me be my wife?I love you ponnee.Ummmaaaa
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>CHOCOLATE DAY 🌸</h2>
+        <p>
+          Thakkuduuuu, no chocolate can match the taste of your lips. You know
+          how sweet it is? I wish I could give you a deep kiss to express my
+          love. The sweetness, the comfort and the way you make my life tastier
+          and happy and turning simple moments into something special is really
+          a great quality ponne. You are my sweeet little Hazel nut.I love you
+          ponnee.Ummmaaaa
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>TEDDY DAY 🌸</h2>
+        <p>
+          Ente kunjumaniii, my little teddy, I really wanted to hug you rn, feel
+          your warmth and hold tight to you to heal both of us. The safety and
+          comfiness that i get when I am around you cant be replaced ponnee. Be
+          my teddy always and I also wanna be your gummy bear.I love you
+          ponnee.Ummmaaaa
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>PROMISE DAY 🌸</h2>
+        <p>
+          Panjareeee, promise me that you will be with me always, promise me you
+          wont leave me. I want you and your love always close to me. Ponne
+          trust me, I really promise you that I will stay by your side whatever
+          happens, when you are alone and when it feels heavy. I promise I will
+          never give up on you or leave you half way. I am the one who is
+          dedicated to travel my life with yours. Lets promise each other that
+          after every fight, we come back and love even more harder and deeper.
+          I promise I will love you and treat the way you deserve ponnee.I
+          havent reached it yet but soon I will.I love you ponnee.Ummmaaaa
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>HUG DAY 🌸</h2>
+        <p>
+          Babyyyy, I really miss your hug. The first time when we hugged, My
+          soul left my body. I was very happy and emotionally connected the
+          moment we hug. That was soo comfy and healing. I hope after every
+          fight, we can hug for few minutes till all the stress ego sadness and
+          misunderstandings end. Wheenever you feel low, down or heavy, close
+          your eyes and think of me. I will be hugging you, holding you tight
+          wrapping the habds around you to support and care you vichuu.I love
+          you ponnee.Ummmaaaa
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>KISS DAY 🌸</h2>
+        <p>
+          Ente panjareeee, do you remember the day we kissed for the first time,
+          those heavenly moments..In that silence, dim light where you and me
+          had our first kiss. That day when we tasted each other, breathe the
+          same air, one heart rhythm with two souls. I wish we could share
+          ourselves everyday to express our love and passion. I really want to
+          kiss you all over, feel you and to show my love and the beauty of you
+          through my kisses.I love you ponnee.Ummmaaaa
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>VALENTINE'S DAY 🌸</h2>
+        <p>
+          Happy valentine's day my love. This is one of the day that I made you
+          cry, feel so upset and low. I am really sorry for what I did ponneee.
+          I know what a huge mistake I have made and how deeply you were
+          wounded. But I hope that heals over time through my love. I will love
+          you more and will surely make you feel special. I will understand you
+          and try to be a good partner. Ponnee, I assure that if you get mad at
+          me, feel bad for me or push me away, I will love you more and more. I
+          will be with you, present for you for us. So please forgive me for
+          what I did. I will never do this again. Once again Happy valentine's
+          day. You made me understand the specaility of this day. I felt soo
+          happy with your gift that you sent me, but I couldnt do anything for
+          you. Hope this will make you feel happy a bit. I love you
+          ponnee.Ummmaaaa
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>My feelings to my lovely baby 💖</h2>
+        <p>
+          Kannee, aadyam kandath muthal ee nimisham vare ini angoott maranam
+          vareyum nee ente ellamaanu. Ente jeevanum lookavum ellam neeya
+          ponne.First kandathum samsarichathum no vaangiyathum chat cheythathum
+          stories share cheythathum secrets paranjathum koode nadannathum
+          chirichathum trust cheythathum pinne ishtam thorann paranj nml
+          onnayathum kaanan vannathum kay pidichathum kettipidichathum kiss
+          cheythathum koode indaarna ooro cute momentsum ooro vattam vannppo
+          indaaya cheriya karyangalum adiyum vazhakkum penakkavum karachilum
+          pinne limit illathe sneehichathum ellam enk othiri special aanu ponne.
+          When its you everything is so special for me, I wanna do everything
+          along with you
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>My precious gem 💖</h2>
+        <p>
+          Ponnee, ooro noottavum chiriyum samsaravum kaliyaakkalum ooro gestures
+          um ooro paattum moolalum voice um ummayum hugs um ellam enk othiri
+          priyappettatha ponne. Enk ninne orupaad ishtava ponne.Nee etra
+          sundariyannu ariyan ente kanniloode nookkiya mathi. the most gorgeous
+          pretty girl. Ninte theenu poolthe voice keetta aara ponne alinj
+          poovaathe. Ooro cute voice um sound indaakkaneem okke enk etra
+          blissful aanu ariyo.Everything about you attracts me. Njn ee lookath
+          eettom kooduthal sneehikkana aalu neeya kanna. I wanna express all my
+          love to you and wanted to trewat you like a princess. But ponne i
+          failed a lot, i made you sad, I amde you upset, cry and tired. But
+          ponne, I will die for you, I will do anything to make you hold tight
+          to me, I can never give up on us because you are only mine. And I am
+          all yours..Always yours
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>I wish you were here rn to feel my love 💖</h2>
+        <p>
+          Vaveee, I really wanna hold your hand, hug you soo tight and keep you
+          soo close to me. I wanna cry in your shoulders for the mistake I did.
+          I count even make a small effort. I didnt realise how special this day
+          was for you, but i destroyed it. I'm soo sorry for my unforgivable
+          mistake. Ive done a lot of mistakes, made you sad everyday. I'm really
+          sorry kanna.Most of the time I fail to understand you, I fail to calm
+          you down, I fail to support you in your bad situations. I am not so
+          perfect for you baby, but I always wanted to be a good friend for you,
+          an understanding partner for you, like a father who takes care of you,
+          like a baby who craves for your love, like a hubby to live a life with
+          you, but i cant make upto it...But ponne, surely one day I will be the
+          one who imagined, the one who treat you in a right way, the one who
+          calms and understands you.
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h2>I love you ponnee...Ummmmaaa 💖</h2>
+        <p>
+          Chakkareee, ente panjaara babyyyy, I really love you so much. I really
+          care about you, you are always my priority ponne and I value you more
+          than myself. My whole world is you ponnee. I am so lucky to have a
+          girl like you, who loves me and take care of me like a baby. You are a
+          real gem ponnee, my deevatha. Kannee, u know how peaceful it is when
+          Im with you, when I see you, when I hear you, when i think about you?
+          You are my favourite dream, my favourite private space, my stress
+          reliever and my most trusted person. I wanna make you feel my love
+          ponne.. I really miss you. Every moment I am thinking about you,
+          wishing that you were right here with me. I wanted to share everything
+          with you, to make all the moments special in my life
+        </p>
+      </div>
+
+      <div class="page hidden">
+        <h1>Will You Forgive Me, Vichuuu? ❤️</h1>
+        <button onclick="forgiveYes()">YES 💖</button>
+        <button id="noBtn" onmouseover="moveNo()">NO 🙈</button>
+      </div>
+
+      <div class="page hidden">
+        <h1>
+          I Love You Forever, Vismaya ❤️ You are my biggest happiness, my
+          sweetest wifeeyyyy
+        </h1>
+      </div>
+    </div>
+
+    <div class="nav">
+      <button onclick="prevPage()">⬅ Back</button>
+      <button onclick="nextPage()">Next ➡</button>
+    </div>
+  </body>
+</html>
