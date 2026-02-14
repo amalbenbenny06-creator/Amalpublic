@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ultimate Valentine For Vismaya</title>
 
-    <style>
-      p{overflow-y:auto}
+   <style>
   * {
     box-sizing: border-box;
   }
 
   body {
-    overflow-y:auto
     margin: 0;
     font-family: "Segoe UI", sans-serif;
     background: linear-gradient(135deg, #ffd6e8, #ffe9c9);
@@ -20,45 +18,31 @@
   }
 
   .book {
-    position: relative;
     width: 100%;
-    min-height: 100vh;
   }
 
   .page {
-    position: absolute;
+    display: none;
     width: 100%;
     min-height: 100vh;
     background: white;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 40px 20px 100px 20px; /* bottom padding for nav */
     text-align: center;
-    transition: transform 0.5s ease, opacity 0.5s ease;
   }
 
-  .hidden {
-    transform: translateX(-100%);
-    opacity: 0;
-    pointer-events: none;
+  .page.active {
+    display: block;
   }
 
-  h1 {
+  h1, h2 {
     color: #e91e63;
-    font-size: 26px;
-  }
-
-  h2 {
-    color: #e91e63;
-    font-size: 22px;
   }
 
   p {
     font-size: 16px;
-    line-height: 1.7;
-    max-width: 95%;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: auto;
   }
 
   button {
@@ -69,7 +53,7 @@
     color: white;
     font-size: 15px;
     cursor: pointer;
-    margin: 5px;
+    margin: 8px;
   }
 
   .nav {
@@ -101,43 +85,15 @@
   }
 
   @keyframes float {
-    from {
-      transform: translateY(100vh);
-    }
-    to {
-      transform: translateY(-10vh);
-    }
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
   }
 
   .teddy {
-    position: absolute;
     font-size: 40px;
   }
 
-  .teddy.left {
-    top: 15px;
-    left: 15px;
-  }
-
-  .teddy.right {
-    bottom: 15px;
-    right: 15px;
-  }
-
-  /* 📱 Extra small devices */
   @media (max-width: 480px) {
-    h1 {
-      font-size: 22px;
-    }
-
-    h2 {
-      font-size: 18px;
-    }
-
-    p {
-      font-size: 14px;
-    }
-
     button {
       width: 100%;
     }
@@ -152,66 +108,69 @@
 
 
     <script>
-      let currentPage = 0;
+  let currentPage = 0;
 
-      function updateIndicator() {
-        document.getElementById("indicator").innerText =
-          "Page " +
-          (currentPage + 1) +
-          " of " +
-          document.getElementsByClassName("page").length;
-      }
+  function updateIndicator() {
+    document.getElementById("indicator").innerText =
+      "Page " +
+      (currentPage + 1) +
+      " of " +
+      document.getElementsByClassName("page").length;
+  }
 
-      function showPage(index) {
-        let pages = document.getElementsByClassName("page");
-        if (index < 0 || index >= pages.length) return;
+  function showPage(index) {
+    let pages = document.getElementsByClassName("page");
+    if (index < 0 || index >= pages.length) return;
 
-        for (let i = 0; i < pages.length; i++) {
-          pages[i].classList.add("hidden");
-        }
+    for (let i = 0; i < pages.length; i++) {
+      pages[i].classList.remove("active");
+    }
 
-        pages[index].classList.remove("hidden");
-        currentPage = index;
-        updateIndicator();
-      }
+    pages[index].classList.add("active");
+    currentPage = index;
+    updateIndicator();
 
-      function nextPage() {
-        showPage(currentPage + 1);
-      }
+    window.scrollTo(0, 0); // scroll to top when changing page
+  }
 
-      function prevPage() {
-        showPage(currentPage - 1);
-      }
+  function nextPage() {
+    showPage(currentPage + 1);
+  }
 
-      function createHearts(count) {
-        for (let i = 0; i < count; i++) {
-          let heart = document.createElement("div");
-          heart.className = "heart";
-          heart.innerHTML = "❤️";
-          heart.style.left = Math.random() * 100 + "vw";
-          heart.style.fontSize = Math.random() * 25 + 15 + "px";
-          heart.style.animationDuration = Math.random() * 3 + 3 + "s";
-          document.body.appendChild(heart);
-        }
-      }
+  function prevPage() {
+    showPage(currentPage - 1);
+  }
 
-      function forgiveYes() {
-        createHearts(80);
-        nextPage();
-      }
+  function createHearts(count) {
+    for (let i = 0; i < count; i++) {
+      let heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 25 + 15 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+      document.body.appendChild(heart);
+    }
+  }
 
-      function moveNo() {
-        let btn = document.getElementById("noBtn");
-        btn.style.position = "absolute";
-        btn.style.left = Math.random() * 70 + "%";
-        btn.style.top = Math.random() * 70 + "%";
-      }
+  function forgiveYes() {
+    createHearts(80);
+    nextPage();
+  }
 
-      window.onload = function () {
-        showPage(0);
-        createHearts(40);
-      };
-    </script>
+  function moveNo() {
+    let btn = document.getElementById("noBtn");
+    btn.style.position = "absolute";
+    btn.style.left = Math.random() * 70 + "%";
+    btn.style.top = Math.random() * 70 + "%";
+  }
+
+  window.onload = function () {
+    showPage(0);
+    createHearts(30);
+  };
+</script>
+
   </head>
   <body>
     <audio autoplay loop>
@@ -465,6 +424,7 @@
     </div>
   </body>
 </html>
+
 
 
 
